@@ -55,7 +55,7 @@ function UserInformation() {
     );
   }
   return (
-    <form className="max-w-5xl mx-4 p-8 space-y-6 bg-white shadow-lg rounded-lg min-h-screen mb-8">
+    <form className="max-w-5xl mx-auto p-8 space-y-6 bg-white shadow-lg rounded-lg min-h-screen mb-8">
       <div className="mb-8 text-center">
         <h2 className="text-3xl font-semibold text-gray-800">
           User Information
