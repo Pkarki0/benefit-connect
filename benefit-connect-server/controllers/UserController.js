@@ -102,33 +102,37 @@ const getAllUserAppliedBenefits = async (req, res) => {
   const { userId } = req.body;
 
   try {
-    const userAppliedBenefits = await userModel.aggregate([
-      { $match: { _id: userId } },
-      {
-        $project: {
-          eligibleBenefits: {
-            $filter: {
-              input: "$eligibleBenefits",
-              as: "benefit",
-              cond: { $eq: ["$$benefit.isApplied", true] },
-            },
-          },
-        },
-      },
-    ]);
+    if (userId) {
+      const userEligibleBenefits = await userModel.findOne(
+        { _id: userId },
+        { eligibleBenefits: 1, _id: 0 }
+      );
+      if (userEligibleBenefits?.eligibleBenefits.length > 0) {
+        const eligibleBenefits = userEligibleBenefits?.eligibleBenefits;
+        const userAppliedBenefits = eligibleBenefits?.filter(
+          (b) => b.isApplied === true
+        );
 
-    if (userAppliedBenefits) {
-      return res.status(200).json({
-        status: "success",
-        message: "User applied benefits fetched successfully",
-        data: userAppliedBenefits,
-      });
+        if (userAppliedBenefits) {
+          return res.status(200).json({
+            status: "success",
+            message: "User applied benefits fetched successfully",
+            data: userAppliedBenefits,
+          });
+        } else {
+          return res.status(200).json({
+            status: "success",
+            message: "User applied benefits not found",
+            data: [],
+          });
+        }
+      }
     }
   } catch (error) {
     return res.status(500).json({
       status: "error",
       message: "Error fetching user eligible benefits",
-      data: error,
+      data: error.message,
     });
   }
 };
@@ -174,7 +178,6 @@ const applyUserEligibility = async (req, res) => {
 
 const changeUserBenefitStatus = async (req, res) => {
   const { benefitUserId, benefitId, status } = req.body;
-  console.log(benefitUserId, benefitId, status);
   try {
     if (benefitUserId && benefitId && status) {
       const updatedData = await userModel.updateOne(
