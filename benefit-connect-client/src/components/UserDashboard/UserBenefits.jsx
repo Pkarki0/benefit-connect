@@ -18,7 +18,7 @@ const UserBenefits = () => {
   const fetchUserBenefits = async () => {
     try {
       const response = await fetch(
-        `${url}/api/user/getAllUserEligibleBenefits`,
+        `${url}/api/user/getAllUserAppliedBenefits`,
         {
           method: "GET",
           headers: {
@@ -30,7 +30,7 @@ const UserBenefits = () => {
       if (response.ok) {
         const data = await response.json();
         const benefits = data.data;
-        setUserBenefits(benefits.eligibleBenefits);
+        setUserBenefits(benefits);
         setLoading(false);
       } else {
         console.error("Failed to fetch data:", response.statusText);
@@ -97,7 +97,7 @@ const UserBenefits = () => {
             </tr>
           </thead>
           <tbody>
-            {userBenefits.length > 0 &&
+            {userBenefits?.length > 0 &&
               userBenefits.map((benefit, index) => (
                 <tr
                   key={benefit._id}
