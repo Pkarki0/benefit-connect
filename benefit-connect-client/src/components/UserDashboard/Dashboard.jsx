@@ -5,10 +5,14 @@ import EligibleBenefits from "./EligibleBenefits";
 
 const Dashboard = () => {
   const { hasFilledEligibilityForm } = useContext(AppContext);
-  console.log(hasFilledEligibilityForm);
+
   return (
     <div className="min-h-screen">
-      {hasFilledEligibilityForm ? <EligibleBenefits /> : <Overview />}
+      {hasFilledEligibilityForm === "true" ? (
+        <EligibleBenefits />
+      ) : (
+        <Overview />
+      )}
     </div>
   );
 };

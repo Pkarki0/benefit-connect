@@ -28,7 +28,7 @@ const App = () => {
           localStorage.removeItem("isAuthenticated-admin");
           setIsAuthenticated(false);
 
-          navigate("/");
+          navigate("/login");
         } else {
           setIsAuthenticated(true);
         }

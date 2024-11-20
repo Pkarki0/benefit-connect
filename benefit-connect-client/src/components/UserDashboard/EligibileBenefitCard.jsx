@@ -3,7 +3,6 @@ import parser from "html-react-parser";
 import { Link } from "react-router-dom";
 
 const EligibileBenefitCard = ({ benefit, image }) => {
-  console.log(benefit);
   function truncateText(text, wordLimit) {
     const words = text.split(" ");
     if (words.length > wordLimit) {

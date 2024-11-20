@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 
 const Sidebar = () => {
-  const { url, token, setToken } = useContext(AppContext);
+  const { url, token } = useContext(AppContext);
 
   return (
     token && (

@@ -5,14 +5,18 @@ import { createContext, useEffect, useState } from "react";
 export const AppContext = createContext({});
 
 const AppContextProvider = (props) => {
-  const [token, setToken] = useState("");
-  const [email, setEmail] = useState("");
+  const [token, setToken] = useState(
+    () => localStorage.getItem("token-client") || ""
+  );
+  const [email, setEmail] = useState(
+    () => localStorage.getItem("email-client") || ""
+  );
 
   const [isAuthenticated, setIsAuthenticated] = useState(
-    () => JSON.parse(localStorage.getItem("isAuthenticated")) || false
+    () => localStorage.getItem("isAuthenticated") || false
   );
   const [hasFilledEligibilityForm, setHasFilledEligibilityForm] = useState(
-    () => JSON.parse(localStorage.getItem("hasFilledEligibilityForm")) || false
+    () => localStorage.getItem("hasFilledEligibilityForm") || false
   );
   const url = "http://localhost:4000";
 
@@ -28,10 +32,9 @@ const AppContextProvider = (props) => {
         setEmail(email);
         setHasFilledEligibilityForm(hasFilledEligibilityForm);
       }
-      console.log(token);
     }
     loadData();
-  }, [token, isAuthenticated]);
+  }, [token, isAuthenticated, hasFilledEligibilityForm]);
 
   const contextValue = {
     url,

@@ -25,6 +25,7 @@ const EligibleBenefits = () => {
         const data = await response.json();
         const benefits = data.data;
         setUserEligibleBenefits(benefits.eligibleBenefits);
+
         setLoading(false);
       } else {
         console.error("Failed to fetch data:", response.statusText);
@@ -42,8 +43,6 @@ const EligibleBenefits = () => {
     } else {
       setLoading(false);
     }
-
-    console.log(userEligibleBenefits);
   }, [token]);
 
   if (loading) {
@@ -66,14 +65,19 @@ const EligibleBenefits = () => {
         You are eligible for all of the below benefits
       </div>
       <div className="flex flex-wrap justify-center gap-8 m-4 p-4 mb-16">
-        {userEligibleBenefits.length > 0 &&
+        {userEligibleBenefits.length > 0 ? (
           userEligibleBenefits.map((benefit, index) => (
             <EligibileBenefitCard
               key={benefit._id}
               benefit={benefit}
               image={images[index]}
             />
-          ))}
+          ))
+        ) : (
+          <div className="text-center text-gray-500">
+            No eligible benefits found.
+          </div>
+        )}
       </div>
     </div>
   );
