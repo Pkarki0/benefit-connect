@@ -52,9 +52,9 @@ const UserBenefits = () => {
     console.log(userBenefits);
   }, [token]);
 
-  const handleActionClick = (id) => {
-    console.log(`Button clicked for row with id: ${id}`);
-  };
+  // const handleActionClick = (id) => {
+  //   console.log(`Button clicked for row with id: ${id}`);
+  // };
 
   if (loading) {
     return (
@@ -91,9 +91,9 @@ const UserBenefits = () => {
               <th className="px-6 py-4 text-left text-sm font-semibold tracking-wide">
                 Status
               </th>
-              <th className="px-6 py-4 text-center text-sm font-semibold tracking-wide">
+              {/* <th className="px-6 py-4 text-center text-sm font-semibold tracking-wide">
                 Action
-              </th>
+              </th> */}
             </tr>
           </thead>
           <tbody>
@@ -120,14 +120,14 @@ const UserBenefits = () => {
                   <td className="border-t border-b border-gray-200 px-6 py-4 text-sm font-medium text-gray-700">
                     {benefit.status ?? "No Status"}
                   </td>
-                  <td className="border-t border-b border-gray-200 px-6 py-4 text-sm text-center">
+                  {/* <td className="border-t border-b border-gray-200 px-6 py-4 text-sm text-center">
                     <button
                       onClick={() => handleActionClick(benefit._id)}
                       className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-6 py-3 rounded-lg text-sm font-semibold shadow-md hover:shadow-xl transform hover:scale-105 transition-all ease-in-out duration-200 focus:outline-none"
                     >
                       Action
                     </button>
-                  </td>
+                  </td> */}
                 </tr>
               ))}
           </tbody>

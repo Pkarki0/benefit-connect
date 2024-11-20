@@ -79,7 +79,7 @@ const Sidebar = () => {
                 >
                   <path d="M19 2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3Zm-7 16H8v-5h4v5Zm0-7H8V6h4v5Zm7 7h-5v-5h5v5Zm0-7h-5V6h5v5Z" />
                 </svg>
-                <span className="ms-3">My Benefits</span>
+                <span className="ms-3">My Applied Benefits</span>
               </Link>
             </li>
           </ul>
