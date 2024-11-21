@@ -25,7 +25,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/benefit", benefitRouter);
 app.use("/api/eligibility", eligibilityRouter);
 app.use("/api/user", userRouter);
-app.use("/api/contact", contactRouter);
+app.use("/api/inquiry", contactRouter);
 
 app.listen(PORT, () => {
   console.log("Listening on PORT:", PORT);

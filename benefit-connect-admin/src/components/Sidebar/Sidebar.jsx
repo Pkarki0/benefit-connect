@@ -31,6 +31,17 @@ const Sidebar = () => {
           >
             <p className="text-lg font-medium">Users</p>
           </NavLink>
+
+          <NavLink
+            to="/inquiry-list"
+            className={({ isActive }) =>
+              `flex items-center gap-4 p-2 rounded-l-lg hover:bg-gray-600 border-l border-t border-b border-gray-600 mb-2 shadow-lg ${
+                isActive ? "bg-gray-800 text-white" : "text-black"
+              }`
+            }
+          >
+            <p className="text-lg font-medium">User Inquiries</p>
+          </NavLink>
         </div>
       </div>
     )

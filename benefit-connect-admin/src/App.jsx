@@ -11,6 +11,7 @@ import "./index.css";
 import UserList from "./pages/UserList";
 import UserBenefits from "./pages/UserBenefits";
 import { jwtDecode } from "jwt-decode";
+import InquiryList from "./pages/InquiryList";
 
 const App = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AppContext);
@@ -59,8 +60,9 @@ const App = () => {
               />
               <Route path="/benefit-list" element={<BenefitList />} />
               <Route path="/user-list" element={<UserList />} />
+              <Route path="/inquiry-list" element={<InquiryList />} />
               <Route path="/user-benefits/:userId" element={<UserBenefits />} />
-
+              InquiryList
               <Route
                 path="/"
                 element={<Navigate to="/benefit-list" replace />}
