@@ -76,19 +76,7 @@ const steps = [
     label: "Required Age bracket for the benefit?",
     type: "radio",
     name: "age",
-    options: [
-      "<18",
-      "18-20",
-      "21-24",
-      "25-29",
-      "30-49",
-      "50-54",
-      "55-59",
-      "60-64",
-      "65-69",
-      "70+",
-      "None",
-    ],
+    options: ["<18", "18-29", "30-49", "50-59", "60-69", "70+"],
     required: true,
   },
   {
@@ -111,8 +99,8 @@ const steps = [
     type: "checkbox",
     name: "employmentStatus",
     options: [
-      "Employed, full-time",
-      "Employed, part-time",
+      "Employed, Full-time",
+      "Employed, Part-time",
       "Unemployed",
       "Retired",
       "Student",
@@ -155,7 +143,7 @@ const steps = [
   },
   {
     label:
-      "Should the applicant, or anyone in the household, living with a disability a requirement for the benefit?",
+      "Should the applicant, or anyone in the household, living with a disability, a requirement for the benefit?",
     type: "radio",
     name: "isAnyoneDisable",
     options: ["Yes", "No"],
