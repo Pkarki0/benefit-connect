@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 
 const UserBenefits = () => {
   const [userBenefits, setUserBenefits] = useState({});
-  const { token, url } = useContext(AppContext);
+  const { token, url, hasFilledEligibilityForm } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
 
   function truncateText(text, wordLimit) {
@@ -29,6 +29,7 @@ const UserBenefits = () => {
       );
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         const benefits = data.data;
         setUserBenefits(benefits);
         setLoading(false);
@@ -44,7 +45,11 @@ const UserBenefits = () => {
 
   useEffect(() => {
     if (token) {
-      fetchUserBenefits();
+      if (hasFilledEligibilityForm == "true") {
+        fetchUserBenefits();
+      } else {
+        setLoading(false);
+      }
     } else {
       setLoading(false);
     }
@@ -132,6 +137,13 @@ const UserBenefits = () => {
               ))}
           </tbody>
         </table>
+        {hasFilledEligibilityForm == "false" && (
+          <div className="mx-auto p-4 m-2">
+            Fill the eligibility form in the dashboard to get your eligible
+            benefits. If you are eligible for the benefits, apply for the
+            benefit to be visible and view your benefit status.
+          </div>
+        )}
       </div>
     </div>
   );

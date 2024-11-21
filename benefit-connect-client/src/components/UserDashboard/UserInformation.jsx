@@ -3,7 +3,7 @@ import { AppContext } from "../../context/AppContext";
 import { ThreeDots } from "react-loader-spinner";
 function UserInformation() {
   const [userInformation, setUserInformation] = useState({});
-  const { token, url } = useContext(AppContext);
+  const { token, url, hasFilledEligibilityForm } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
 
   const fetchUserEligibilityInformation = async () => {
@@ -19,9 +19,11 @@ function UserInformation() {
         }
       );
 
+      console.log("User Info", response);
+
       if (response.ok) {
         const data = await response.json();
-        setUserInformation(data.data);
+        setUserInformation(data);
         setLoading(false);
       } else {
         console.error("Failed to fetch data:", response.statusText);
@@ -54,6 +56,17 @@ function UserInformation() {
       </div>
     );
   }
+
+  if (hasFilledEligibilityForm == "false") {
+    return (
+      <div className="mx-auto px-2 m-2 min-h-screen">
+        Fill the eligibility form in the dashboard to get your eligible
+        benefits. If you are eligible for the benefits, apply for the benefit to
+        be visible and view your benefit status.
+      </div>
+    );
+  }
+
   return (
     <form className="max-w-5xl mx-auto p-8 space-y-6 bg-white shadow-lg rounded-lg min-h-screen mb-8">
       <div className="mb-8 text-center">
