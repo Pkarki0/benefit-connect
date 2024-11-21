@@ -50,49 +50,63 @@ const BenefitDetails = () => {
     <div
       className={`${
         isAuthenticated ? "sm:ml-64" : "w-full"
-      }  mx-auto px-4 py-32 min-h-screen`}
+      } mx-auto px-6 py-24 min-h-screen`}
     >
-      <div className="max-w-4xl mx-auto bg-white rounded-lg p-6 space-y-4">
-        <h1 className="text-3xl font-semibold text-gray-900">
+      <div className="max-w-4xl mx-auto bg-white p-8 space-y-6">
+        <h1 className="text-4xl font-semibold text-gray-900">
           {benefit.title}
         </h1>
 
-        <div className="space-y-4">
-          <div>
-            <strong className="text-lg">Description:</strong>
-            <div className="tinymce-content text-gray-700">
+        <div className="space-y-6">
+          <div className="space-y-3">
+            <strong className="text-xl text-gray-800">Description:</strong>
+            <div className="tinymce-content text-gray-700 text-base">
               {parser(benefit.description)}
             </div>
           </div>
-          <div>
-            <strong className="text-lg">Eligibility Data:</strong>
-            <div className="tinymce-content text-gray-700">
+          <div className="space-y-3">
+            <strong className="text-xl text-gray-800">Eligibility Data:</strong>
+            <div className="tinymce-content text-gray-700 text-base">
               {parser(benefit.eligibilityData)}
             </div>
           </div>
-          <div>
-            <strong className="text-lg">Identification Required:</strong>
-            <p className="text-gray-700">{benefit.identificationRequired}</p>
+          <div className="space-y-3">
+            <strong className="text-xl text-gray-800">
+              Identification Required:
+            </strong>
+            <p className="text-gray-700 text-base">
+              {benefit.identificationRequired}
+            </p>
           </div>
-          <div>
-            <strong className="text-lg">Identification Required Data:</strong>
-            <div className="tinymce-content text-gray-700">
+          <div className="space-y-3">
+            <strong className="text-xl text-gray-800">
+              Identification Required Data:
+            </strong>
+            <div className="tinymce-content text-gray-700 text-base">
               {parser(benefit.identificationRequiredData)}
             </div>
           </div>
-          <div>
-            <strong className="text-lg">Is Application Easy:</strong>
-            <p className="text-gray-700">{benefit.isApplicationEasy}</p>
+          <div className="space-y-3">
+            <strong className="text-xl text-gray-800">
+              Is Application Easy:
+            </strong>
+            <p className="text-gray-700 text-base">
+              {benefit.isApplicationEasy}
+            </p>
           </div>
-          <div>
-            <strong className="text-lg">How To Apply:</strong>
-            <div className="tinymce-content text-gray-700">
+          <div className="space-y-3">
+            <strong className="text-xl text-gray-800">How To Apply:</strong>
+            <div className="tinymce-content text-gray-700 text-base">
               {parser(benefit.howToApplyData)}
             </div>
           </div>
-          <div>
-            <strong className="text-lg">Is Tax Filing Required:</strong>
-            <p className="text-gray-700">{benefit.isTaxFilingRequired}</p>
+          <div className="space-y-3">
+            <strong className="text-xl text-gray-800">
+              Is Tax Filing Required:
+            </strong>
+            <p className="text-gray-700 text-base">
+              {benefit.isTaxFilingRequired}
+            </p>
           </div>
         </div>
       </div>

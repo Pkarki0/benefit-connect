@@ -19,7 +19,7 @@ const Introduction = () => {
             Answer questions to help us find benefits for you.
           </h2>
           <p className="mb-4">
-            Your answers to questions are anonymous. We do not store your
+            Your answers to questions are stored securely. We do not share your
             personal information.
           </p>
           <div className="flex items-center justify-between mb-4">
@@ -45,16 +45,14 @@ const Introduction = () => {
           </div>
         </div>
 
-        <div className="bg-white shadow-md rounded-lg p-6 mb-8 max-w-md w-full border border-black">
+        <div className="bg-white shadow-md rounded-lg p-8 mb-8 max-w-md w-full border border-black">
           <h2 className="text-xl font-semibold mb-4">Important Information</h2>
           <ul className="list-disc list-inside mb-4">
             <li>
-              Important information for people who don’t have legal status in
-              Canada or who are temporary residents.
-            </li>
-            <li>
-              Important information about benefits for Indigenous peoples (First
-              Nations, Inuit, Métis, or other).
+              The Benefits Wayfinder was created by Prosper USA, a national
+              charity that works with partners in all sectors to develop and
+              promote financial policies, programs and resources that transform
+              lives and help Canadians to prosper.
             </li>
           </ul>
         </div>

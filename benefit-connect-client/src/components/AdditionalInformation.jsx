@@ -24,9 +24,10 @@ const AdditionalInformation = () => {
             Click on Get started to open the sections you want to explore.
           </p>
         </div>
-        <div className="flex flex-wrap justify-around gap-4 m-4 p-4">
-          <div>
-            <div className="max-w-sm border border-gray-200 rounded-lg shadow-lg shadow-slate-400 bg-[#F4F2EF] dark:border-gray-700 hover:bg-[#f9f9f9] transition duration-400 ease-in-out text-justify">
+        <div className="flex justify-around gap-2 m-4 p-2">
+          {/* flex-wrap */}
+          <div className="flex-1 max-w-sm">
+            <div className="h-full border border-gray-200 rounded-lg shadow-lg shadow-slate-400 bg-[#F4F2EF] dark:border-gray-700 hover:bg-[#f9f9f9] transition duration-400 ease-in-out text-justify">
               <img
                 className="rounded-t-lg w-full h-auto"
                 src={maximize}
@@ -42,22 +43,19 @@ const AdditionalInformation = () => {
                   If you worry about paying your bills, affording basic needs,
                   and saving money, you are not alone. Our expenses keep
                   increasing and often, the money we earn or receive may feel
-                  like it is not enough.
-                </p>
-                <p className="mb-3 font-normal text-gray-700">
-                  Managing your money can be stressful. However, there are ways
-                  to make the most of the resources available to you so that you
-                  can better manage your finances and not feel as overwhelmed.
-                  You can start by tracking what is coming in. In this module,
-                  you will see how you can maximize what&apos;s around you
-                  through benefits, community resources, and investing in
-                  yourself.
+                  like it is not enough. Managing your money can be stressful.
+                  However, there are ways to make the most of the resources
+                  available to you so that you can better manage your finances
+                  and not feel as overwhelmed. You can start by tracking what is
+                  coming in. In this module, you will see how you can maximize
+                  what`&apos;s around you through benefits, community resources,
+                  and investing in yourself.
                 </p>
               </div>
             </div>
           </div>
-          <div>
-            <div className="max-w-sm border border-gray-200 rounded-lg shadow-lg shadow-slate-400 bg-[#F4F2EF] dark:border-gray-700 hover:bg-[#f9f9f9] transition duration-400 ease-in-out text-justify">
+          <div className="flex-1 max-w-sm">
+            <div className="h-full border border-gray-200 rounded-lg shadow-lg shadow-slate-400 bg-[#F4F2EF] dark:border-gray-700 hover:bg-[#f9f9f9] transition duration-400 ease-in-out text-justify">
               <img
                 className="rounded-t-lg w-full h-auto"
                 src={minimize}
@@ -78,13 +76,13 @@ const AdditionalInformation = () => {
                   module.
                 </p>
                 <p className="mb-3 font-normal text-gray-700">
-                  Let&apos;s get started!
+                  Let`&apos;s get started!
                 </p>
               </div>
             </div>
           </div>
-          <div>
-            <div className="max-w-sm border border-gray-200 rounded-lg shadow-lg shadow-slate-400 bg-[#F4F2EF] dark:border-gray-700 hover:bg-[#f9f9f9] transition duration-400 ease-in-out text-justify">
+          <div className="flex-1 max-w-sm">
+            <div className="h-full border border-gray-200 rounded-lg shadow-lg shadow-slate-400 bg-[#F4F2EF] dark:border-gray-700 hover:bg-[#f9f9f9] transition duration-400 ease-in-out text-justify">
               <img className="rounded-t-lg w-full h-auto" src={family} alt="" />
               <div className="p-5">
                 <a href="#">
@@ -100,9 +98,6 @@ const AdditionalInformation = () => {
                   manage your financial situation. We have looked at these
                   concepts in the previous two modules. In this module, you have
                   the option to look into additional resources for these topics.
-                  Click the lesson you want to explore in more detail or begin
-                  with the first lesson &quot;Main Menu&quot; to explore all
-                  lessons.
                 </p>
                 <p className="mb-3 font-normal text-gray-700">
                   Let&apos;s get started!

@@ -356,7 +356,7 @@ const BenefitForm = () => {
   return (
     <div className="container mx-auto mt-16 max-w-7xl">
       <h4 className="font-semibold text-3xl text-gray-800 mb-8 text-center">
-        Create a Benefit
+        Create a New Benefit
       </h4>
       <form onSubmit={handleSubmit} className="p-10 space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

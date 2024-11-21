@@ -14,8 +14,8 @@ const Disclaimer = () => {
       <div className="max-w-2xl text-left rounded-lg p-6">
         <h2 className="text-xl font-semibold mb-2">Copyright</h2>
         <p className="mb-4 text-justify">
-          The internet domain name <strong>benefitswayfinder.org</strong> is the
-          property of Prosper Canada. Canadian copyright law and international
+          The internet domain name <strong>benefit-connect.org</strong> is the
+          property of Prosper USA. American copyright law and international
           treaties protect the textual, graphic, audio, and audiovisual material
           in this site.
         </p>
@@ -28,11 +28,11 @@ const Disclaimer = () => {
           third-party websites outside of the Benefits Wayfinder website and any
           external resources (applications, and the like) are for your
           convenience solely. The operation and content of such third-party
-          websites and resources are beyond Prosper Canada‘s control. Prosper
-          Canada does not endorse in any manner whatsoever or accept any
+          websites and resources are beyond Prosper USA&apos;s control. Prosper
+          USA does not endorse in any manner whatsoever or accept any
           responsibility for the content or other material that may be contained
           on such resources and websites, or any products or services advertised
-          on or sold through them. Prosper Canada will not be liable under any
+          on or sold through them. Prosper USA will not be liable under any
           circumstances for any damages resulting from use of this website or
           any other third-party website and resources linked to this website.
         </p>

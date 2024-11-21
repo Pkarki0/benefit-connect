@@ -133,7 +133,7 @@ const Contact = () => {
           </a>
         </p>
         <p className="text-sm text-gray-600">
-          <strong>Address:</strong> 123 Benefits Way, City, Country
+          <strong>Address:</strong> 123 Benefits Way, Texas, USA
         </p>
       </div>
     </div>

@@ -30,7 +30,7 @@ function App() {
           localStorage.removeItem("isAuthenticated");
 
           setIsAuthenticated(false);
-          navigate("/");
+          navigate("/signin");
         } else {
           setIsAuthenticated(true);
         }

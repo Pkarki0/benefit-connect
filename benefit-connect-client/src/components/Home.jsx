@@ -9,7 +9,7 @@ import { AppContext } from "../context/AppContext";
 const Home = () => {
   const { token } = useContext(AppContext);
   return (
-    <div className="pt-40">
+    <div className="pt-36">
       {token && <Sidebar />}
       <div className={token ? "sm:ml-64" : `w-full`}>
         <Introduction />

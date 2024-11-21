@@ -15,7 +15,7 @@ const HomePageBenefits = () => {
         if (response.ok) {
           const data = await response.json();
           const benefits = data.data;
-          const showBenefits = benefits?.slice(0, 6);
+          const showBenefits = benefits?.slice(0, 8);
           setBenefits(showBenefits);
         }
       } catch (error) {
@@ -33,7 +33,7 @@ const HomePageBenefits = () => {
   return (
     <>
       <div>
-        <div className="text-2xl pt-20 font-semibold text-center">
+        <div className="text-2xl pt-16 font-semibold text-center">
           Not sure where to start? Use one of our helpful starting points below{" "}
           <p>
             {!token && (
