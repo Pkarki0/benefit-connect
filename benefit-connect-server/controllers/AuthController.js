@@ -57,11 +57,72 @@ const signIn = async (req, res) => {
 
 // Register user
 const signUp = async (req, res) => {
-  const { fullname, email, password, userType } = req.body;
+  const { fullname, email, password } = req.body;
 
   try {
     // Check if user already exists
     const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({
+        status: "error",
+        message: "User already exists",
+        data: null,
+      });
+    }
+
+    // Validate email format and password strength
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({
+        status: "error",
+        message: "Please enter a valid email",
+        data: null,
+      });
+    }
+    if (password.length < 8) {
+      return res.status(400).json({
+        status: "error",
+        message: "Password must be at least 8 characters long",
+        data: null,
+      });
+    }
+
+    // Hash user password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = new userModel({
+      fullname,
+      email,
+      password: hashedPassword,
+      userType: "user",
+    });
+
+    const user = await newUser.save();
+
+    const token = createToken(user._id);
+    return res.status(201).json({
+      status: "success",
+      message: "User registered successfully",
+      data: { token, email },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "error",
+      message: "Server error",
+      data: error.message,
+    });
+  }
+};
+
+const adminSignUp = async (req, res) => {
+  const { fullname, email, password, userType } = req.body;
+
+  try {
+    // Check if user already exists
+    const existingUser = await userModel.findOne({
+      $or: [{ email }, { email, userType }],
+    });
     if (existingUser) {
       return res.status(409).json({
         status: "error",
@@ -102,7 +163,7 @@ const signUp = async (req, res) => {
     const token = createToken(user._id);
     return res.status(201).json({
       status: "success",
-      message: "User registered successfully",
+      message: "Admin registered successfully",
       data: { token, email },
     });
   } catch (error) {
@@ -175,4 +236,4 @@ const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 };
 
-export { signIn, signUp, adminSignIn };
+export { signIn, signUp, adminSignIn, adminSignUp };

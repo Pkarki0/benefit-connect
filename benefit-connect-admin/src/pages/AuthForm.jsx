@@ -32,8 +32,9 @@ const AuthForm = () => {
       alert("All fields are required");
       return;
     }
+
     const endpoint = isSignUp
-      ? url + "/api/auth/signup"
+      ? url + "/api/auth/adminSignUp"
       : url + "/api/auth/adminSignIn";
 
     try {
@@ -44,7 +45,6 @@ const AuthForm = () => {
         body: JSON.stringify(formData),
       });
       const result = await response.json();
-      console.log(result);
       if (result.status == "success") {
         setToken(result.data.token);
         setEmail(result.data.email);

@@ -38,7 +38,7 @@ const App = () => {
         localStorage.removeItem("email-admin");
         localStorage.removeItem("isAuthenticated-admin");
         setIsAuthenticated(false);
-        navigate("/");
+        navigate("/login");
       }
     } else {
       setIsAuthenticated(false);
@@ -74,7 +74,7 @@ const App = () => {
         </div>
       ) : (
         <Routes>
-          <Route path="/login" element={<AuthForm />} />
+          <Route path="/" element={<AuthForm />} />
         </Routes>
       )}
     </div>
