@@ -13,6 +13,11 @@ const contactSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isReplied: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 
 const contactModel =
