@@ -18,6 +18,10 @@ const contactSchema = new mongoose.Schema({
     required: false,
     default: false,
   },
+  replyMessage: {
+    type: String,
+    required: false,
+  },
 });
 
 const contactModel =

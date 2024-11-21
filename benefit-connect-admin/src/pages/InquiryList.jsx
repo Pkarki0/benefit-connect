@@ -15,7 +15,7 @@ const InquiryList = () => {
     return text;
   }
 
-  const fetchContacts = async () => {
+  const fetchInquiries = async () => {
     try {
       const response = await fetch(url + "/api/inquiry/getAllInquiries", {
         method: "GET",
@@ -39,7 +39,7 @@ const InquiryList = () => {
 
   useEffect(() => {
     if (token) {
-      fetchContacts();
+      fetchInquiries();
     }
   }, []);
 
@@ -88,7 +88,7 @@ const InquiryList = () => {
                 <td className="px-6 py-4 text-center">
                   {!contact.isReplied ? (
                     <Link
-                      to={`/replyTo/${contact._id}`}
+                      to={`/reply-inquiry/${contact._id}`}
                       className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
                     >
                       Reply

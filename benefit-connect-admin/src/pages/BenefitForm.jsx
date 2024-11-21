@@ -34,21 +34,6 @@ const steps = [
     placeholder: "Enter the description for the benefit",
     required: true,
   },
-
-  {
-    label: "What are the requirements to be eligible for this benefit?",
-    type: "eligibilityEditor",
-    name: "eligibilityData",
-    placeholder: "Enter the identification documents required for the benefit",
-    required: true,
-  },
-  {
-    label: "What are steps required for the application?",
-    type: "howToApplyEditor",
-    name: "howToApplyData",
-    placeholder: "Enter the steps required for the application",
-    required: true,
-  },
   {
     label: "Is the application easy or complex?",
     type: "radio",
@@ -234,9 +219,7 @@ const BenefitForm = () => {
     description: "",
     identificationRequired: "",
     identificationRequiredData: "",
-    eligibilityData: "",
     isApplicationEasy: "",
-    howToApplyData: "",
     isTaxFilingRequired: "",
     isVisionCareRequired: "",
     isPrescriptionDrugCostly: "",
@@ -455,7 +438,7 @@ const BenefitForm = () => {
                   name={field.name}
                   checked={formData[field.name]}
                   onChange={handleChange}
-                  className="mr-2"
+                  className="mx-2 mt-[6px]"
                 />
                 <label className="text-gray-700">{field.info}</label>
               </div>

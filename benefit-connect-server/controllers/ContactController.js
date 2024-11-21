@@ -57,23 +57,39 @@ const getContactById = async (req, res) => {
 
 const sendInquiryReply = async (req, res) => {
   try {
-    const data = await contactModel.findById(req.params.inquiryId);
-    if (!data) {
+    const { replyMessage } = req.body;
+
+    if (!replyMessage) {
+      return res.status(400).json({
+        status: "error",
+        message: "Reply message is required",
+        data: null,
+      });
+    }
+
+    const updatedInquiry = await contactModel.findByIdAndUpdate(
+      req.params.inquiryId,
+      { $set: { replyMessage: replyMessage, isReplied: true } },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedInquiry) {
       return res.status(404).json({
         status: "error",
         message: "Inquiry data not found",
         data: null,
       });
     }
+
     res.status(200).json({
       status: "success",
-      message: "Inquiry data retrieved successfully",
-      data: data,
+      message: "Reply sent successfully",
+      data: updatedInquiry,
     });
   } catch (err) {
     res.status(500).json({
       status: "error",
-      message: "Error fetching Inquiry data by ID",
+      message: "Error sending reply for the inquiry",
       data: err.message,
     });
   }
