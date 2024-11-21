@@ -354,105 +354,119 @@ const BenefitForm = () => {
   };
 
   return (
-    <div className="container mx-auto mt-16">
-      <h4 className="font-medium text-2xl mb-4">Add Benefit</h4>
-      <form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-8 rounded-lg shadow-md"
-      >
-        {steps.map((field, index) => (
-          <div key={index} className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">
-              {field.label}
-            </label>
+    <div className="container mx-auto mt-16 max-w-7xl">
+      <h4 className="font-semibold text-3xl text-gray-800 mb-8 text-center">
+        Create a Benefit
+      </h4>
+      <form onSubmit={handleSubmit} className="p-10 space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {steps.map((field, index) => (
+            <div key={index} className="space-y-4">
+              <label className="block text-lg font-medium text-gray-800">
+                {field.label}
+              </label>
 
-            {field.type === "radio" && (
-              <div>
-                {field.options.map((option, key) => (
-                  <label key={key} className="block text-gray-700">
-                    <input
-                      type="radio"
-                      name={field.name}
-                      value={option}
-                      checked={formData[field.name] == option}
-                      onChange={handleChange}
-                      className="mr-2"
-                    />
-                    {option}
-                  </label>
-                ))}
-              </div>
-            )}
+              {/* Radio Inputs */}
+              {field.type === "radio" && (
+                <div className="space-y-3">
+                  {field.options.map((option, key) => (
+                    <label
+                      key={key}
+                      className="flex items-center gap-3 text-gray-700 hover:text-gray-900 cursor-pointer"
+                    >
+                      <input
+                        type="radio"
+                        name={field.name}
+                        value={option}
+                        checked={formData[field.name] === option}
+                        onChange={handleChange}
+                        className="form-radio h-5 w-5 text-blue-600"
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
 
-            {field.type === "checkbox" && (
-              <div>
-                {formData[field.name]}
-                {field.options.map((option, key) => (
-                  <label key={key} className="block text-gray-700">
-                    <input
-                      type="checkbox"
-                      name={field.name}
-                      value={option}
-                      checked={formData[field.name]?.includes(option)}
-                      onChange={handleChange}
-                      className="mr-2"
-                    />
-                    {option}
-                  </label>
-                ))}
-              </div>
-            )}
+              {/* Checkbox Inputs */}
+              {field.type === "checkbox" && (
+                <div className="space-y-3">
+                  {field.options.map((option, key) => (
+                    <label
+                      key={key}
+                      className="flex items-center gap-3 text-gray-700 hover:text-gray-900 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        name={field.name}
+                        value={option}
+                        checked={formData[field.name]?.includes(option)}
+                        onChange={handleChange}
+                        className="form-checkbox h-5 w-5 text-blue-600"
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
 
-            {field.type === "text" && (
-              <input
-                type="text"
-                name={field.name}
-                value={formData[field.name] || ""}
-                onChange={handleChange}
-                placeholder={field.placeholder}
-                className="w-full p-2 border border-gray-300 rounded"
-              />
-            )}
-
-            {[
-              "identificationEditor",
-              "eligibilityEditor",
-              "howToApplyEditor",
-              "descriptionEditor",
-            ].includes(field.type) && (
-              <TextEditor
-                editorValue={formData[field.name]}
-                handleChange={(content) =>
-                  setFormData((prevData) => ({
-                    ...prevData,
-                    [field.name]: content,
-                  }))
-                }
-              />
-            )}
-
-            {field.type === "terms" && (
-              <div className="flex items-start">
+              {/* Text Inputs */}
+              {field.type === "text" && (
                 <input
-                  type="checkbox"
+                  type="text"
                   name={field.name}
-                  checked={formData[field.name]}
+                  value={formData[field.name] || ""}
                   onChange={handleChange}
-                  className="mx-2 mt-[6px]"
+                  placeholder={field.placeholder}
+                  className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200 ease-in-out"
                 />
-                <label className="text-gray-700">{field.info}</label>
-              </div>
-            )}
+              )}
 
-            {errors[field.name] && (
-              <p className="text-red-500 text-sm mt-2">{errors[field.name]}</p>
-            )}
-          </div>
-        ))}
-        <div className="col-span-1 md:col-span-2 text-right">
+              {/* Text Editors */}
+              {[
+                "identificationEditor",
+                "eligibilityEditor",
+                "howToApplyEditor",
+                "descriptionEditor",
+              ].includes(field.type) && (
+                <TextEditor
+                  editorValue={formData[field.name]}
+                  handleChange={(content) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      [field.name]: content,
+                    }))
+                  }
+                />
+              )}
+
+              {/* Terms Checkbox */}
+              {field.type === "terms" && (
+                <div className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    name={field.name}
+                    checked={formData[field.name]}
+                    onChange={handleChange}
+                    className="form-checkbox h-5 w-5 text-blue-600"
+                  />
+                  <span className="text-gray-700">{field.info}</span>
+                </div>
+              )}
+
+              {/* Validation Errors */}
+              {errors[field.name] && (
+                <p className="text-red-500 text-sm">{errors[field.name]}</p>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Submit Button */}
+        <div className="flex justify-end">
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+            className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 px-8 rounded-full shadow-lg hover:bg-gradient-to-l hover:from-blue-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300 ease-in-out"
           >
             Submit
           </button>

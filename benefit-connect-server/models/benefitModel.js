@@ -11,10 +11,6 @@ const benefitSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    eligibilityData: {
-      type: String,
-      required: true,
-    },
     identificationRequired: {
       type: String,
       required: true,
@@ -24,10 +20,6 @@ const benefitSchema = new mongoose.Schema(
       required: true,
     },
     isApplicationEasy: {
-      type: String,
-      required: true,
-    },
-    howToApplyData: {
       type: String,
       required: true,
     },
