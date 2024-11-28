@@ -4,13 +4,13 @@ const addContact = async (req, res) => {
   try {
     const contact = new contactModel(req.body);
     const savedContact = await contact.save();
-    res.status(201).json({
+    return res.status(201).json({
       status: "success",
       message: "Contact added successfully",
       data: savedContact,
     });
   } catch (error) {
-    res.status(400).json({
+    return res.status(400).json({
       status: "error",
       message: "Error adding Contact",
       data: error.message,
@@ -21,13 +21,15 @@ const addContact = async (req, res) => {
 const getAllContacts = async (req, res) => {
   try {
     const contacts = await contactModel.find({});
-    res.status(201).json({
+    return res.status(201).json({
       status: "success",
       message: "Inquiry added successfully",
       data: contacts,
     });
   } catch (err) {
-    res.status(500).json({ message: "Error fetching inquiries", error: err });
+    return res
+      .status(500)
+      .json({ message: "Error fetching inquiries", error: err });
   }
 };
 
@@ -41,13 +43,13 @@ const getContactById = async (req, res) => {
         data: null,
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Inquiry data retrieved successfully",
       data: data,
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Error fetching Inquiry data by ID",
       data: err.message,
@@ -81,13 +83,13 @@ const sendInquiryReply = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Reply sent successfully",
       data: updatedInquiry,
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Error sending reply for the inquiry",
       data: err.message,

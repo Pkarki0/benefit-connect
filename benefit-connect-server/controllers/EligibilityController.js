@@ -15,20 +15,20 @@ const addEligibilityData = async (req, res) => {
         { new: true, runValidators: true }
       );
 
-      res.status(201).json({
+      return res.status(201).json({
         status: "success",
         message: "Eligibility data added successfully",
         data: savedData,
       });
     }
 
-    res.status(201).json({
+    return res.status(201).json({
       status: "success",
       message: "Eligibility data added successfully",
       data: savedData,
     });
   } catch (err) {
-    res.status(400).json({
+    return res.status(400).json({
       status: "error",
       message: "Error adding eligibility data",
       data: err.message,
@@ -40,13 +40,13 @@ const addEligibilityData = async (req, res) => {
 const getAllEligibilityData = async (req, res) => {
   try {
     const data = await eligibilityDataModel.find();
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Eligibility data retrieved successfully",
       data: data,
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Error fetching eligibility data",
       data: err.message,
@@ -65,13 +65,13 @@ const getEligibilityById = async (req, res) => {
         data: null,
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Eligibility data retrieved successfully",
       data: data,
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Error fetching eligibility data by ID",
       data: err.message,
@@ -121,13 +121,13 @@ const updateEligibility = async (req, res) => {
         data: null,
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Eligibility data updated successfully",
       data: updatedData,
     });
   } catch (err) {
-    res.status(400).json({
+    return res.status(400).json({
       status: "error",
       message: "Error updating eligibility data",
       data: err.message,
@@ -148,13 +148,13 @@ const deleteEligibility = async (req, res) => {
         data: null,
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Eligibility data deleted successfully",
       data: deletedData,
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Error deleting eligibility data",
       data: err.message,

@@ -107,7 +107,7 @@ const signUp = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Server error",
       data: error.message,
@@ -168,7 +168,7 @@ const adminSignUp = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Server error",
       data: error.message,

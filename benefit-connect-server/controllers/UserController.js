@@ -12,7 +12,9 @@ const getAllUsers = async (req, res) => {
       );
     return res.json(users);
   } catch (err) {
-    res.status(500).json({ message: "Error fetching users", error: err });
+    return res
+      .status(500)
+      .json({ message: "Error fetching users", error: err });
   }
 };
 
@@ -36,14 +38,14 @@ const checkForUserEligibility = async (req, res) => {
   try {
     const matchedBenefits = await processUserEligibility(req.body.userId);
     if (matchedBenefits.length > 0) {
-      res.status(200).json({
+      return res.status(200).json({
         status: "success",
         message: "User eligible benefits processed successfully",
         data: matchedBenefits,
       });
     }
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Error processing user eligible benefits",
       data: error,
@@ -161,14 +163,14 @@ const applyUserEligibility = async (req, res) => {
           data: null,
         });
       }
-      res.status(200).json({
+      return res.status(200).json({
         status: "success",
         message: "User eligible benefit applied successfully",
         data: updatedData,
       });
     }
   } catch (err) {
-    res.status(400).json({
+    return res.status(400).json({
       status: "error",
       message: "Error updating user eligible data",
       data: err.message,
@@ -199,14 +201,14 @@ const changeUserBenefitStatus = async (req, res) => {
           data: null,
         });
       }
-      res.status(200).json({
+      return res.status(200).json({
         status: "success",
         message: "User benefit status updated successfully",
         data: updatedData,
       });
     }
   } catch (err) {
-    res.status(400).json({
+    return res.status(400).json({
       status: "error",
       message: "Error updating user benefit data",
       data: err.message,

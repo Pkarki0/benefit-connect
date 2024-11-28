@@ -5,13 +5,13 @@ export const addBenefit = async (req, res) => {
   try {
     const benefit = new benefitModel(req.body);
     const savedBenefit = await benefit.save();
-    res.status(201).json({
+    return res.status(201).json({
       status: "success",
       message: "Benefit created successfully",
       data: savedBenefit,
     });
   } catch (error) {
-    res.status(400).json({
+    return res.status(400).json({
       status: "error",
       message: "Error creating benefit",
       data: error.message,
@@ -23,13 +23,13 @@ export const addBenefit = async (req, res) => {
 export const getAllBenefits = async (req, res) => {
   try {
     const benefits = await benefitModel.find();
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Benefits retrieved successfully",
       data: benefits,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Error retrieving benefits",
       data: error.message,
@@ -54,13 +54,13 @@ export const searchBenefits = async (req, res) => {
 
     const benefits = await benefitModel.find(query);
 
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Benefits retrieved successfully",
       data: benefits,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Error retrieving benefits",
       data: error.message,
@@ -79,13 +79,13 @@ export const getBenefitById = async (req, res) => {
         data: null,
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Benefit retrieved successfully",
       data: benefit,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Error retrieving benefit",
       data: error.message,
@@ -108,13 +108,13 @@ export const updateBenefit = async (req, res) => {
         data: null,
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Benefit updated successfully",
       data: updatedBenefit,
     });
   } catch (error) {
-    res.status(400).json({
+    return res.status(400).json({
       status: "error",
       message: "Error updating benefit",
       data: error.message,
@@ -135,13 +135,13 @@ export const deleteBenefit = async (req, res) => {
         data: null,
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Benefit deleted successfully",
       data: deletedBenefit,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: "Error deleting benefit",
       data: error.message,
