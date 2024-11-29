@@ -104,7 +104,7 @@ const steps = [
     required: true,
   },
   {
-    label: "Do you care for any children under 18 years of age?",
+    label: "Do you take care of any of your children under 18 years of age?",
     type: "radio",
     name: "careForChildrenUnder18",
     options: ["Yes", "No"],
@@ -144,7 +144,7 @@ const steps = [
     required: true,
   },
   {
-    label: "Length of stay in Canada since age 18?",
+    label: "Length of stay in USA since age 18?",
     type: "radio",
     name: "lengthOfStay",
     options: [
@@ -189,7 +189,7 @@ const EligibilityForm = () => {
     termsAccepted: false,
   });
   const [errors, setErrors] = useState({});
-  const { url } = useContext(AppContext);
+  const { url, token, setHasFilledEligibilityForm } = useContext(AppContext);
   const navigate = useNavigate();
 
   const validate = useCallback(() => {
@@ -253,17 +253,19 @@ const EligibilityForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          token: token,
         },
         body: JSON.stringify(formData),
       });
 
       const result = await response.json();
+      console.log(result);
       if (response.ok) {
         alert("Eligibility data added successfully!");
-
+        setHasFilledEligibilityForm(true);
         navigate("/user-information");
       } else {
-        alert(`Error: ${result}`);
+        alert(`Error: ${result?.message}`);
       }
     } catch (error) {
       alert("An error occurred while submitting data");

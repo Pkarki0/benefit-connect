@@ -23,7 +23,7 @@ function UserInformation() {
 
       if (response.ok) {
         const data = await response.json();
-        setUserInformation(data);
+        setUserInformation(data?.data);
         setLoading(false);
       } else {
         console.error("Failed to fetch data:", response.statusText);
@@ -56,7 +56,7 @@ function UserInformation() {
       </div>
     );
   }
-
+  console.log("hasFilledEligibilityForm", hasFilledEligibilityForm);
   if (hasFilledEligibilityForm == "false") {
     return (
       <div className="mx-auto px-2 m-2 min-h-screen">

@@ -6,14 +6,27 @@ import userModel from "../models/userModel.js";
 const addEligibilityData = async (req, res) => {
   try {
     const eligibilityData = new eligibilityDataModel(req.body);
-    const savedData = await eligibilityData.save();
+    const existingEligibleData = await eligibilityDataModel.findOne({
+      userId: new mongoose.Types.ObjectId(req.body.userId),
+    });
 
+    if (existingEligibleData) {
+      return res.status(400).json({
+        status: "error",
+        message: "The eligibility data for the user already exist!",
+        data: null,
+      });
+    }
+    const savedData = await eligibilityData.save();
+    console.log("Saved data", savedData);
     if (savedData) {
-      await userModel.findByIdAndUpdate(
-        eligibilityData.UserId,
+      const result = await userModel.findByIdAndUpdate(
+        eligibilityData.userId,
         { hasFilledEligibilityForm: true },
         { new: true, runValidators: true }
       );
+
+      console.log(result);
 
       return res.status(201).json({
         status: "success",

@@ -1,6 +1,10 @@
 /* eslint-disable no-unused-vars */
+import Dashboard from "../components/UserDashboard/Dashboard";
 import Sidebar from "../components/UserDashboard/Sidebar";
-import { Outlet } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
+import UserBenefits from "../components/UserDashboard/UserBenefits";
+import UserInformation from "../components/UserDashboard/UserInformation";
+import AllBenefits from "../components/UserDashboard/AllBenefits";
 
 const UserDashboard = () => {
   return (
@@ -8,7 +12,12 @@ const UserDashboard = () => {
       <Sidebar />
       <div className="sm:ml-64">
         <div className="pt-32">
-          <Outlet />
+          <Routes>
+            <Route index element={<Dashboard />} />
+            <Route path="user-benefits" element={<UserBenefits />} />
+            <Route path="user-information" element={<UserInformation />} />
+            <Route path="all-benefits" element={<AllBenefits />} />
+          </Routes>
         </div>
       </div>
     </div>

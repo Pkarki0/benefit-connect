@@ -6,10 +6,6 @@ import { AppContext } from "./context/AppContext";
 import Header from "./components/Header";
 import Website from "./pages/Website";
 import UserDashboard from "./pages/UserDashboard";
-import Dashboard from "./components/UserDashboard/Dashboard";
-import UserInformation from "./components/UserDashboard/UserInformation";
-import UserBenefits from "./components/UserDashboard/UserBenefits";
-import AllBenefits from "./components/UserDashboard/AllBenefits";
 import { jwtDecode } from "jwt-decode";
 
 // App Component
@@ -55,12 +51,7 @@ function App() {
         <Route
           path="/dashboard/*"
           element={isAuthenticated ? <UserDashboard /> : <Navigate to="/" />}
-        >
-          <Route index element={<Dashboard />} />
-          <Route path="user-benefits" element={<UserBenefits />} />
-          <Route path="user-information" element={<UserInformation />} />
-          <Route path="all-benefits" element={<AllBenefits />} />
-        </Route>
+        />
       </Routes>
       <Footer />
     </>
