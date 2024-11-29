@@ -159,6 +159,7 @@ const applyUserEligibility = async (req, res) => {
         {
           $set: {
             "eligibleBenefits.$.isApplied": true,
+            "eligibleBenefits.$.status": "Applied",
           },
         }
       );

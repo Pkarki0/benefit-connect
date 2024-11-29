@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { ThreeDots } from "react-loader-spinner";
 import parse from "html-react-parser";
+import { Link } from "react-router-dom";
 
 const UserBenefits = () => {
   const [userBenefits, setUserBenefits] = useState({});
@@ -92,9 +94,9 @@ const UserBenefits = () => {
               <th className="px-6 py-4 text-left text-sm font-semibold tracking-wide">
                 Status
               </th>
-              {/* <th className="px-6 py-4 text-center text-sm font-semibold tracking-wide">
+              <th className="px-6 py-4 text-center text-sm font-semibold tracking-wide">
                 Action
-              </th> */}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -119,16 +121,16 @@ const UserBenefits = () => {
                     {benefit.employmentStatus}
                   </td>
                   <td className="border-t border-b border-gray-200 px-6 py-4 text-sm font-medium text-gray-700">
-                    {benefit.status ?? "No Status"}
+                    {benefit.status}
                   </td>
-                  {/* <td className="border-t border-b border-gray-200 px-6 py-4 text-sm text-center">
-                    <button
-                      onClick={() => handleActionClick(benefit._id)}
+                  <td className="border-t border-b border-gray-200 px-6 py-4 text-sm text-center">
+                    <Link
+                      to={`/benefit-details/${benefit._id}`}
                       className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-6 py-3 rounded-lg text-sm font-semibold shadow-md hover:shadow-xl transform hover:scale-105 transition-all ease-in-out duration-200 focus:outline-none"
                     >
-                      Action
-                    </button>
-                  </td> */}
+                      Details
+                    </Link>
+                  </td>
                 </tr>
               ))}
           </tbody>

@@ -9,7 +9,7 @@ const BenefitDetails = () => {
   const [benefit, setBenefit] = useState(null);
   const { url, isAuthenticated } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
-
+  console.log("Benefit Id", benefitId);
   useEffect(() => {
     const fetchBenefitDetails = async () => {
       try {
@@ -65,12 +65,6 @@ const BenefitDetails = () => {
             </div>
           </div>
           <div className="space-y-3">
-            <strong className="text-xl text-gray-800">Eligibility Data:</strong>
-            <div className="tinymce-content text-gray-700 text-base">
-              {parser(benefit.eligibilityData)}
-            </div>
-          </div>
-          <div className="space-y-3">
             <strong className="text-xl text-gray-800">
               Identification Required:
             </strong>
@@ -93,12 +87,6 @@ const BenefitDetails = () => {
             <p className="text-gray-700 text-base">
               {benefit.isApplicationEasy}
             </p>
-          </div>
-          <div className="space-y-3">
-            <strong className="text-xl text-gray-800">How To Apply:</strong>
-            <div className="tinymce-content text-gray-700 text-base">
-              {parser(benefit.howToApplyData)}
-            </div>
           </div>
           <div className="space-y-3">
             <strong className="text-xl text-gray-800">

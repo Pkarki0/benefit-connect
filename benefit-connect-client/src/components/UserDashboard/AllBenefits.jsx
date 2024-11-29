@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import Search from "./Search";
 import { AppContext } from "../../context/AppContext";
