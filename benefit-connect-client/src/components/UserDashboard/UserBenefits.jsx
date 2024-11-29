@@ -27,9 +27,9 @@ const UserBenefits = () => {
           },
         }
       );
+
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         const benefits = data.data;
         setUserBenefits(benefits);
         setLoading(false);
@@ -54,12 +54,8 @@ const UserBenefits = () => {
       setLoading(false);
     }
 
-    console.log(userBenefits);
+    console.log("User benefits", userBenefits);
   }, [token]);
-
-  // const handleActionClick = (id) => {
-  //   console.log(`Button clicked for row with id: ${id}`);
-  // };
 
   if (loading) {
     return (
@@ -137,6 +133,11 @@ const UserBenefits = () => {
               ))}
           </tbody>
         </table>
+        {Object.keys(userBenefits).length === 0 && (
+          <div className="mx-auto p-4 m-2">
+            You have not applied for any of the benefits.
+          </div>
+        )}
         {hasFilledEligibilityForm == "false" && (
           <div className="mx-auto p-4 m-2">
             Fill the eligibility form in the dashboard to get your eligible

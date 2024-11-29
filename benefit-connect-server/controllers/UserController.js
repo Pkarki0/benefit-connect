@@ -128,6 +128,13 @@ const getAllUserAppliedBenefits = async (req, res) => {
             data: [],
           });
         }
+      } else {
+        return res.status(200).json({
+          status: "success",
+          message:
+            "No benefits found, check dashboard for getting eligible benefits",
+          data: [],
+        });
       }
     }
   } catch (error) {
