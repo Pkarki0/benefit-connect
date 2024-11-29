@@ -136,12 +136,6 @@ const BenefitsList = () => {
                 </div>
               </div>
               <div>
-                <strong>Eligibility Data:</strong>
-                <div className="tinymce-content">
-                  <div>{parse(selectedBenefit.eligibilityData)}</div>
-                </div>
-              </div>
-              <div>
                 <strong>Identification Required:</strong>
                 <div>{selectedBenefit.identificationRequired}</div>
               </div>
@@ -154,12 +148,6 @@ const BenefitsList = () => {
               <div>
                 <strong>Is Application Easy:</strong>
                 <div>{selectedBenefit.isApplicationEasy}</div>
-              </div>
-              <div>
-                <strong>How To Apply:</strong>
-                <div className="tinymce-content">
-                  <div>{parse(selectedBenefit.howToApplyData)}</div>
-                </div>
               </div>
               <div>
                 <strong>Is Tax Filing Required:</strong>

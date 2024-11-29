@@ -76,7 +76,7 @@ const steps = [
     label: "Required Age bracket for the benefit?",
     type: "radio",
     name: "age",
-    options: ["<18", "18-29", "30-49", "50-59", "60-69", "70+"],
+    options: ["<18", "18-29", "30-49", "50-59", "60-69", "70+", "None"],
     required: true,
   },
   {

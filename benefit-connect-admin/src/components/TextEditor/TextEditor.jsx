@@ -17,9 +17,10 @@ const TextEditor = ({ handleChange, editorValue = "" }) => {
   return (
     <div>
       <Editor
-        apiKey="20yyf3kmcyczhw2uf1wzl8dhegyzhzimodm879yxo82yxghz" // Replace with your API key
-        value={editorContent} // Bind value to the state
-        onEditorChange={handleEditorChange} // Update the state on content change
+        apiKey="gf1r63qs3cqy2hm00op1wkfzzpcaj09mqlvt0c8m658f74sm"
+        value={editorContent}
+        onEditorChange={handleEditorChange}
+        change
         init={{
           height: 500,
           menubar: true,

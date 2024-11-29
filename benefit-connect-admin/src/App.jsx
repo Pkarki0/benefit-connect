@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
-import "react-toastify/dist/ReactToastify.css";
 import BenefitForm from "./pages/BenefitForm";
 import BenefitList from "./pages/BenefitList";
 import AuthForm from "./pages/AuthForm";
@@ -30,7 +29,7 @@ const App = () => {
           localStorage.removeItem("isAuthenticated-admin");
           setIsAuthenticated(false);
 
-          navigate("/login");
+          navigate("/");
         } else {
           setIsAuthenticated(true);
         }
@@ -40,7 +39,7 @@ const App = () => {
         localStorage.removeItem("email-admin");
         localStorage.removeItem("isAuthenticated-admin");
         setIsAuthenticated(false);
-        navigate("/login");
+        navigate("/");
       }
     } else {
       setIsAuthenticated(false);
