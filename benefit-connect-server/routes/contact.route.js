@@ -9,9 +9,9 @@ import authMiddleware from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.post("/addInquiry", authMiddleware, addContact);
-router.post("/sendInquiryReply/:inquiryId", authMiddleware, sendInquiryReply);
-router.get("/getAllInquiries", authMiddleware, getAllContacts);
-router.get("/getInquiryById/:inquiryId", authMiddleware, getContactById);
+router.post("/addInquiry", addContact);
+router.post("/sendInquiryReply/:inquiryId", sendInquiryReply);
+router.get("/getAllInquiries", getAllContacts);
+router.get("/getInquiryById/:inquiryId", getContactById);
 
 export default router;
