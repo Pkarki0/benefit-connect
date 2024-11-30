@@ -50,6 +50,7 @@ export default function Signin() {
         );
         navigate("/dashboard");
       } else {
+        alert("Invalid username or password! Please try again!");
         navigate("/signin");
       }
     }

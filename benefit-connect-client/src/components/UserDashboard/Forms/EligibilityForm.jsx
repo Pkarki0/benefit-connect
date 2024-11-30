@@ -373,7 +373,6 @@ const EligibilityForm = () => {
               />
             )}
 
-            {/* Display validation error */}
             {errors[steps[step].name] && (
               <p className="text-red-500 text-sm mt-2">
                 {errors[steps[step].name]}
@@ -381,7 +380,6 @@ const EligibilityForm = () => {
             )}
           </div>
 
-          {/* Navigation Buttons */}
           <div className="flex justify-between mt-10">
             {step > 0 && (
               <button
