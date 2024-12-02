@@ -18,8 +18,32 @@ const matchEligibleBenefits = async (eligibilityData) => {
       ) {
         return;
       }
-
       matchCount++;
+
+      if (
+        eligibilityData?.isPregnant &&
+        benefit?.isPregnant &&
+        benefit?.isPregnant.toLowerCase() == "yes" &&
+        eligibilityData?.isPregnant.toLowerCase() == "yes"
+      ) {
+        matchedBenefits.push(benefit)
+        return;
+      }
+      
+    
+      if (benefit?.age && benefit?.age.toLowerCase() == "none") {
+        matchCount++;
+      } else if (
+        eligibilityData?.age &&
+        benefit?.age &&
+        eligibilityData?.age.toLowerCase() === benefit?.age.toLowerCase()
+      ) {
+        matchedBenefits.push(benefit)
+        return;
+        
+      }
+
+     
 
       if (
         eligibilityData?.isVisionCareRequired &&
@@ -48,15 +72,7 @@ const matchEligibleBenefits = async (eligibilityData) => {
         matchCount++;
       }
 
-      if (benefit?.age && benefit?.age.toLowerCase() == "none") {
-        matchCount++;
-      } else if (
-        eligibilityData?.age &&
-        benefit?.age &&
-        eligibilityData?.age.toLowerCase() === benefit?.age.toLowerCase()
-      ) {
-        matchCount++;
-      }
+      
 
       if (benefit?.immigrationStatus.toLowerCase() == "any") {
         matchCount++;
@@ -151,14 +167,7 @@ const matchEligibleBenefits = async (eligibilityData) => {
         matchCount++;
       }
 
-      if (
-        eligibilityData?.isPregnant &&
-        benefit?.isPregnant &&
-        eligibilityData?.isPregnant.toLowerCase() ===
-          benefit?.isPregnant.toLowerCase()
-      ) {
-        matchCount++;
-      }
+      
 
       if (
         benefit?.lengthOfStay &&

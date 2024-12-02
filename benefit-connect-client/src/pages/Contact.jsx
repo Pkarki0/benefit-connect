@@ -20,7 +20,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(url + "/api/contact/addContact", {
+      const response = await fetch(url + "/api/inquiry/addInquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
