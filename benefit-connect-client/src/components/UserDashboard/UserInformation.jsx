@@ -96,10 +96,7 @@ function UserInformation() {
             label: "Diabetic or Surgery",
             value: userInformation.isDiabeticOrSurgery,
           },
-          {
-            label: "Citizenship Status",
-            value: userInformation.citizenshipStatus,
-          },
+          
           { label: "Age", value: userInformation.age },
           {
             label: "Immigration Status",

@@ -56,7 +56,7 @@ export default function Signup() {
       }
       if (res.ok) {
         alert("User Sign Up Completed");
-        navigate("/signin");
+        navigate("/dashboard");
       }
     } catch (error) {
       setErrorMessage(error.message);
