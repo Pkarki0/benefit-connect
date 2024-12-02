@@ -21,7 +21,6 @@ app.use(cors());
 connectDB();
 
 // api endpoints
-app.use("/images", express.static("uploads"));
 app.use("/api/auth", authRouter);
 app.use("/api/benefit", benefitRouter);
 app.use("/api/eligibility", eligibilityRouter);

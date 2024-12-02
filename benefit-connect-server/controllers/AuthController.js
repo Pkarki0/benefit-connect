@@ -6,7 +6,6 @@ import validator from "validator";
 // login user
 const signIn = async (req, res) => {
   const { email, password } = req.body;
-
   // Validate input fields
   if (!email || !password || email.trim() === "" || password.trim() === "") {
     return res.status(400).json({
@@ -65,7 +64,7 @@ const signUp = async (req, res) => {
     if (existingUser) {
       return res.status(409).json({
         status: "error",
-        message: "User already exists",
+        message: "User with the email already exists",
         data: null,
       });
     }
@@ -103,7 +102,11 @@ const signUp = async (req, res) => {
     return res.status(201).json({
       status: "success",
       message: "User registered successfully",
-      data: { token, email },
+      data: {
+        token,
+        email,
+        hasFilledEligibilityForm: false,
+      },
     });
   } catch (error) {
     console.error(error);
@@ -126,7 +129,7 @@ const adminSignUp = async (req, res) => {
     if (existingUser) {
       return res.status(409).json({
         status: "error",
-        message: "User already exists",
+        message: "User with the email already exists",
         data: null,
       });
     }

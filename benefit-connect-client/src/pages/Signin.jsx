@@ -17,7 +17,6 @@ export default function Signin() {
     token,
     setToken,
     setIsAuthenticated,
-    email,
     setHasFilledEligibilityForm,
     setEmail,
   } = useContext(AppContext);
@@ -31,23 +30,25 @@ export default function Signin() {
     e.preventDefault();
     let newUrl = url + "/api/auth/signin";
     if (htmlFormData.email != "" && htmlFormData.password != "") {
-      const response = await axios.post(newUrl, htmlFormData);
-      console.log(response);
+      const response = await fetch(newUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(htmlFormData),
+      });
       if (response.status == 200) {
-        localStorage.setItem("token-client", response.data.data.token);
-        localStorage.setItem("email-client", response.data.data.email);
+        const jsonData = await response.json();
+        localStorage.setItem("token-client", jsonData.data.token);
+        localStorage.setItem("email-client", jsonData.data.email);
         localStorage.setItem("isAuthenticated", true);
         localStorage.setItem(
           "hasFilledEligibilityForm",
-          response.data.data.hasFilledEligibilityForm
+          jsonData.data.hasFilledEligibilityForm
         );
 
-        setToken(response.data.data.token);
+        setToken(jsonData.data.token);
         setIsAuthenticated(true);
-        setEmail(response.data.data.email);
-        setHasFilledEligibilityForm(
-          response.data.data.hasFilledEligibilityForm
-        );
+        setEmail(jsonData.data.email);
+        setHasFilledEligibilityForm(jsonData.data.hasFilledEligibilityForm);
         navigate("/dashboard");
       } else {
         alert("Invalid username or password! Please try again!");

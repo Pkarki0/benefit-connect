@@ -12,8 +12,14 @@ export default function Signup() {
     confirmPassword: "",
   });
   const [errorMessage, setErrorMessage] = useState(null);
-  const { url, token } = useContext(AppContext);
-
+  const {
+    url,
+    token,
+    setToken,
+    setIsAuthenticated,
+    setHasFilledEligibilityForm,
+    setEmail,
+  } = useContext(AppContext);
   const navigate = useNavigate();
 
   const onChangeHandler = (e) => {
@@ -24,7 +30,6 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     if (
       !formData.fullname ||
       !formData.email ||
@@ -49,14 +54,25 @@ export default function Signup() {
         body: JSON.stringify(bodyData),
       });
 
-      const data = await res.json();
-      console.log(data);
-      if (data.status === "error") {
-        return setErrorMessage(data.message);
+      const jsonData = await res.json();
+
+      if (jsonData.status === "error") {
+        return setErrorMessage(jsonData.message);
       }
-      if (res.ok) {
-        alert("User Sign Up Completed");
-        navigate("/signin");
+      if (jsonData.status == "success") {
+        localStorage.setItem("token-client", jsonData.data.token);
+        localStorage.setItem("email-client", jsonData.data.email);
+        localStorage.setItem("isAuthenticated", true);
+        localStorage.setItem(
+          "hasFilledEligibilityForm",
+          jsonData.data.hasFilledEligibilityForm
+        );
+
+        setToken(jsonData.data.token);
+        setIsAuthenticated(true);
+        setEmail(jsonData.data.email);
+        setHasFilledEligibilityForm(jsonData.data.hasFilledEligibilityForm);
+        navigate("/dashboard");
       }
     } catch (error) {
       setErrorMessage(error.message);
@@ -64,7 +80,7 @@ export default function Signup() {
   };
 
   return !token ? (
-    <div className="min-h-screen pt-44">
+    <div className="min-h-screen pt-36">
       <div className="flex p-3 max-w-5xl mx-auto flex-col md:flex-row md:items-center gap-24">
         {/* left */}
         <div className="flex-1">
@@ -90,6 +106,9 @@ export default function Signup() {
 
         <div className="flex-1">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+            {errorMessage && (
+              <div className="mt-5 text-red-600">{errorMessage}</div>
+            )}
             <div className="mb-4">
               <label
                 htmlFor="fullname"
@@ -175,15 +194,12 @@ export default function Signup() {
               Sign Up
             </button>
           </form>
-          <div className="flex gap-2 text-sm mt-5">
+          <div className="flex gap-2 text-sm mt-4 mb-6">
             <span>Have an account?</span>
             <Link to="/signin" className="text-blue-500">
               Sign In
             </Link>
           </div>
-          {errorMessage && (
-            <div className="mt-5 text-red-600">{errorMessage}</div>
-          )}
         </div>
       </div>
     </div>
