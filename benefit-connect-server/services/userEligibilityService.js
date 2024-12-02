@@ -20,68 +20,130 @@ const matchEligibleBenefits = async (eligibilityData) => {
       }
       matchCount++;
 
-      if (
-        eligibilityData?.isPregnant &&
-        benefit?.isPregnant &&
-        benefit?.isPregnant.toLowerCase() == "yes" &&
-        eligibilityData?.isPregnant.toLowerCase() == "yes"
-      ) {
-        matchedBenefits.push(benefit)
-        return;
+      if (eligibilityData?.isPregnant && benefit?.isPregnant) {
+        if (
+          benefit?.isPregnant.toLowerCase() == "yes" &&
+          eligibilityData?.isPregnant.toLowerCase() == "yes"
+        ) {
+          matchedBenefits.push(benefit);
+          return;
+        } else if (
+          benefit?.isPregnant.toLowerCase() == "yes" &&
+          eligibilityData?.isPregnant.toLowerCase() == "no"
+        ) {
+          return;
+        }
+        matchCount++;
       }
-      
-    
+
+      if (benefit?.isAnyoneDisable && eligibilityData?.isAnyoneDisable) {
+        if (
+          benefit?.isAnyoneDisable.toLowerCase() == "yes" &&
+          eligibilityData?.isAnyoneDisable.toLowerCase() == "yes"
+        ) {
+          matchedBenefits.push(benefit);
+          return;
+        } else if (
+          benefit?.isAnyoneDisable.toLowerCase() == "yes" &&
+          eligibilityData?.isAnyoneDisable.toLowerCase() == "no"
+        ) {
+          return;
+        }
+        matchCount++;
+      }
+
+      if (
+        eligibilityData?.isVisionCareRequired &&
+        benefit?.isVisionCareRequired
+      ) {
+        if (
+          benefit?.isVisionCareRequired.toLowerCase() == "yes" &&
+          eligibilityData?.isVisionCareRequired.toLowerCase() == "yes"
+        ) {
+          matchedBenefits.push(benefit);
+          return;
+        } else if (
+          benefit?.isVisionCareRequired.toLowerCase() == "yes" &&
+          eligibilityData?.isVisionCareRequired.toLowerCase() == "no"
+        ) {
+          return;
+        }
+        matchCount++;
+      }
+
       if (benefit?.age && benefit?.age.toLowerCase() == "none") {
         matchCount++;
       } else if (
         eligibilityData?.age &&
         benefit?.age &&
+        eligibilityData?.age.toLowerCase() != benefit?.age.toLowerCase()
+      ) {
+        return;
+      } else if (
+        eligibilityData?.age &&
+        benefit?.age &&
         eligibilityData?.age.toLowerCase() === benefit?.age.toLowerCase()
       ) {
-        matchedBenefits.push(benefit)
+        matchedBenefits.push(benefit);
         return;
-        
       }
 
-     
-
-      if (
-        eligibilityData?.isVisionCareRequired &&
-        benefit?.isVisionCareRequired &&
-        eligibilityData?.isVisionCareRequired.toLowerCase() ==
-          benefit?.isVisionCareRequired.toLowerCase()
-      ) {
-        matchCount++;
-      }
-
-      if (
-        eligibilityData?.isPrescriptionDrugCostly &&
-        benefit?.isPrescriptionDrugCostly &&
-        eligibilityData?.isPrescriptionDrugCostly.toLowerCase() ===
-          benefit?.isPrescriptionDrugCostly.toLowerCase()
-      ) {
-        matchCount++;
-      }
-
-      if (
-        eligibilityData?.employerHealthCoverage &&
-        benefit?.employerHealthCoverage &&
-        eligibilityData?.employerHealthCoverage.toLowerCase() ===
-          benefit?.employerHealthCoverage.toLowerCase()
-      ) {
-        matchCount++;
-      }
-
-      
+      // 70+
 
       if (benefit?.immigrationStatus.toLowerCase() == "any") {
         matchCount++;
       } else if (
         eligibilityData?.immigrationStatus &&
         benefit?.immigrationStatus &&
+        eligibilityData?.immigrationStatus.toLowerCase() !=
+          benefit?.immigrationStatus.toLowerCase()
+      ) {
+        return;
+      } else if (
+        eligibilityData?.immigrationStatus &&
+        benefit?.immigrationStatus &&
         eligibilityData?.immigrationStatus.toLowerCase() ===
           benefit?.immigrationStatus.toLowerCase()
       ) {
+        matchedBenefits.push(benefit);
+        return;
+      }
+
+      if (
+        benefit?.isPrescriptionDrugCostly &&
+        eligibilityData?.isPrescriptionDrugCostly
+      ) {
+        if (
+          benefit?.isPrescriptionDrugCostly.toLowerCase() == "yes" &&
+          eligibilityData?.isPrescriptionDrugCostly.toLowerCase() == "yes"
+        ) {
+          matchedBenefits.push(benefit);
+          return;
+        } else if (
+          benefit?.isPrescriptionDrugCostly.toLowerCase() == "yes" &&
+          eligibilityData?.isPrescriptionDrugCostly.toLowerCase() == "no"
+        ) {
+          return;
+        }
+        matchCount++;
+      }
+
+      if (
+        benefit?.employerHealthCoverage &&
+        eligibilityData?.employerHealthCoverage
+      ) {
+        if (
+          benefit?.employerHealthCoverage.toLowerCase() == "yes" &&
+          eligibilityData?.employerHealthCoverage.toLowerCase() == "yes"
+        ) {
+          matchedBenefits.push(benefit);
+          return;
+        } else if (
+          benefit?.employerHealthCoverage.toLowerCase() == "yes" &&
+          eligibilityData?.employerHealthCoverage.toLowerCase() == "no"
+        ) {
+          return;
+        }
         matchCount++;
       }
 
@@ -98,7 +160,8 @@ const matchEligibleBenefits = async (eligibilityData) => {
         if (benefitEmployment.includes("any")) {
           matchCount++;
         } else if (commonEmployment.length > 0) {
-          matchCount++;
+          matchedBenefits.push(benefit);
+          return;
         }
       }
 
@@ -107,9 +170,16 @@ const matchEligibleBenefits = async (eligibilityData) => {
       } else if (
         eligibilityData?.income &&
         benefit?.income &&
+        eligibilityData?.income.toLowerCase() != benefit?.income.toLowerCase()
+      ) {
+        return;
+      } else if (
+        eligibilityData?.income &&
+        benefit?.income &&
         eligibilityData?.income.toLowerCase() === benefit?.income.toLowerCase()
       ) {
-        matchCount++;
+        matchedBenefits.push(benefit);
+        return;
       }
 
       if (
@@ -120,36 +190,55 @@ const matchEligibleBenefits = async (eligibilityData) => {
       } else if (
         eligibilityData?.familySize &&
         benefit?.familySize &&
+        eligibilityData?.familySize.toLowerCase() !=
+          benefit?.familySize.toLowerCase()
+      ) {
+        return;
+      } else if (
+        eligibilityData?.familySize &&
+        benefit?.familySize &&
         eligibilityData?.familySize.toLowerCase() ===
           benefit?.familySize.toLowerCase()
       ) {
-        matchCount++;
+        matchedBenefits.push(benefit);
+        return;
       }
 
       if (
-        eligibilityData?.careForChildrenUnder18 &&
         benefit?.careForChildrenUnder18 &&
-        eligibilityData?.careForChildrenUnder18.toLowerCase() ===
-          benefit?.careForChildrenUnder18.toLowerCase()
+        eligibilityData?.careForChildrenUnder18
       ) {
+        if (
+          benefit?.careForChildrenUnder18.toLowerCase() == "yes" &&
+          eligibilityData?.careForChildrenUnder18.toLowerCase() == "yes"
+        ) {
+          matchedBenefits.push(benefit);
+          return;
+        } else if (
+          benefit?.careForChildrenUnder18.toLowerCase() == "yes" &&
+          eligibilityData?.careForChildrenUnder18.toLowerCase() == "no"
+        ) {
+          return;
+        }
         matchCount++;
       }
 
       if (
-        eligibilityData?.isAnyoneDisable &&
-        benefit?.isAnyoneDisable &&
-        eligibilityData?.isAnyoneDisable.toLowerCase() ===
-          benefit?.isAnyoneDisable.toLowerCase()
-      ) {
-        matchCount++;
-      }
-
-      if (
-        eligibilityData?.isDiabeticOrSurgery &&
         benefit?.isDiabeticOrSurgery &&
-        eligibilityData?.isDiabeticOrSurgery.toLowerCase() ===
-          benefit?.isDiabeticOrSurgery.toLowerCase()
+        eligibilityData?.isDiabeticOrSurgery
       ) {
+        if (
+          benefit?.isDiabeticOrSurgery.toLowerCase() == "yes" &&
+          eligibilityData?.isDiabeticOrSurgery.toLowerCase() == "yes"
+        ) {
+          matchedBenefits.push(benefit);
+          return;
+        } else if (
+          benefit?.isDiabeticOrSurgery.toLowerCase() == "yes" &&
+          eligibilityData?.isDiabeticOrSurgery.toLowerCase() == "no"
+        ) {
+          return;
+        }
         matchCount++;
       }
 
@@ -161,13 +250,19 @@ const matchEligibleBenefits = async (eligibilityData) => {
       } else if (
         eligibilityData?.livingCondition &&
         benefit?.livingCondition &&
+        eligibilityData?.livingCondition.toLowerCase() !=
+          benefit?.livingCondition.toLowerCase()
+      ) {
+        return;
+      } else if (
+        eligibilityData?.livingCondition &&
+        benefit?.livingCondition &&
         eligibilityData?.livingCondition.toLowerCase() ===
           benefit?.livingCondition.toLowerCase()
       ) {
-        matchCount++;
+        matchedBenefits.push(benefit);
+        return;
       }
-
-      
 
       if (
         benefit?.lengthOfStay &&
@@ -177,10 +272,18 @@ const matchEligibleBenefits = async (eligibilityData) => {
       } else if (
         eligibilityData?.lengthOfStay &&
         benefit?.lengthOfStay &&
+        eligibilityData?.lengthOfStay.toLowerCase() !=
+          benefit?.lengthOfStay.toLowerCase()
+      ) {
+        return;
+      } else if (
+        eligibilityData?.lengthOfStay &&
+        benefit?.lengthOfStay &&
         eligibilityData?.lengthOfStay.toLowerCase() ===
           benefit?.lengthOfStay.toLowerCase()
       ) {
-        matchCount++;
+        matchedBenefits.push(benefit);
+        return;
       }
 
       if (matchCount >= 5) {

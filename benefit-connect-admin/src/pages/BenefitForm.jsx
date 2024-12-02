@@ -50,7 +50,7 @@ const steps = [
     required: true,
   },
   {
-    label: "Does this benefit require applicant to have vision care?",
+    label: "Does this benefit provide vision care?",
     type: "radio",
     name: "isVisionCareRequired",
     options: ["Yes", "No"],
@@ -151,7 +151,7 @@ const steps = [
   },
   {
     label:
-      "Does the applicant require to be diabetic or had any surgery in the past 3 months?",
+      "Does this benefit require applicant to be diabetic or had any surgery in the past 3 months?",
     type: "radio",
     name: "isDiabeticOrSurgery",
     options: ["Yes", "No"],
@@ -171,7 +171,8 @@ const steps = [
     required: true,
   },
   {
-    label: "Does the applicant be pregnant or expecting a child?",
+    label:
+      "Does the benefit require applicant to be pregnant or expecting a child?",
     type: "radio",
     name: "isPregnant",
     options: ["Yes", "No"],
@@ -246,11 +247,10 @@ const BenefitForm = () => {
         if (response.ok) {
           const fetchedData = await response.json();
           const benefit = fetchedData.data;
-          // console.log(benefit);
 
           setFormData((prevData) => ({
             ...prevData,
-            ...benefit, // Fill formData with the fetched data
+            ...benefit,
           }));
         }
       } catch (error) {
@@ -332,7 +332,6 @@ const BenefitForm = () => {
         }
         navigate("/");
       } else {
-        // console.log(result);
         alert(`Error: ${result}`);
       }
     } catch (error) {
