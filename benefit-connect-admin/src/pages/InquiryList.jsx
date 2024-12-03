@@ -94,7 +94,12 @@ const InquiryList = () => {
                       Reply
                     </Link>
                   ) : (
-                    <span className="text-gray-400">N/A</span>
+                    <Link
+                      to={`/reply-inquiry/${contact._id}`}
+                      className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+                    >
+                      View Reply
+                    </Link>
                   )}
                 </td>
               </tr>
