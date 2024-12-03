@@ -263,8 +263,8 @@ const EligibilityForm = () => {
       if (response.ok) {
         alert("Eligibility data added successfully!");
         setHasFilledEligibilityForm(true);
-        localStorage.setItem("hasFilledEligibilityForm",true)
-        navigate("/");
+        localStorage.setItem("hasFilledEligibilityForm", true);
+        navigate("/dashboard");
       } else {
         alert(`Error: ${result?.message}`);
       }

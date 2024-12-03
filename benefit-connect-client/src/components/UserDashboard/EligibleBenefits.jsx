@@ -6,7 +6,7 @@ import images from "../../images";
 
 const EligibleBenefits = () => {
   const [userEligibleBenefits, setUserEligibleBenefits] = useState([]);
-  const { token, url } = useContext(AppContext);
+  const { token, url, hasFilledEligibilityForm } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
 
   const fetchUserEligibleBenefits = async () => {
@@ -61,9 +61,11 @@ const EligibleBenefits = () => {
       if (response.ok) {
         const data = await response.json();
         const benefits = data.data;
-        setUserEligibleBenefits(benefits.eligibleBenefits);
-
-        setLoading(false);
+        setUserEligibleBenefits(benefits);
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
       } else {
         console.error("Failed to fetch data:", response.statusText);
         setLoading(false);
@@ -87,6 +89,7 @@ const EligibleBenefits = () => {
       </div>
     );
   }
+  console.log("Data:", userEligibleBenefits);
 
   return (
     <div className="min-h-screen pt-4 flex flex-col">
@@ -94,7 +97,8 @@ const EligibleBenefits = () => {
         You are eligible for all of the below benefits
       </div>
       <div className="flex flex-wrap justify-center gap-8 m-4 p-4 mb-16">
-        {userEligibleBenefits?.length > 0 ? (
+        {hasFilledEligibilityForm == "true" &&
+        userEligibleBenefits.length > 0 ? (
           userEligibleBenefits.map((benefit, index) => (
             <EligibileBenefitCard
               key={benefit._id}
