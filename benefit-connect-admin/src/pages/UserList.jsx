@@ -151,25 +151,7 @@ const UserList = () => {
               <span className="font-bold">Eligibility Form Filled:</span>{" "}
               {selectedUser.hasFilledEligibilityForm ? "Yes" : "No"}
             </p>
-            <p>
-              <span className="font-bold">Eligible Benefits:</span>{" "}
-              {selectedUser.eligibleBenefits.length > 0 ? (
-                <ul className="list-disc ml-5">
-                  {selectedUser.eligibleBenefits.map((benefit) => (
-                    <li key={benefit._id}>
-                      <button
-                        className="text-blue-500 hover:underline"
-                        onClick={() => openBenefitModal(benefit._id)}
-                      >
-                        {benefit.name}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                "No eligible benefits available."
-              )}
-            </p>
+            
           </div>
         ) : (
           <p>Loading user details...</p>
