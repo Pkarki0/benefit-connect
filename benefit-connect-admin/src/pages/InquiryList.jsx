@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
 
 const InquiryList = () => {
   const { url, token } = useContext(AppContext);
@@ -44,7 +45,17 @@ const InquiryList = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading inquiries...</div>;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <ThreeDots
+          height="80"
+          width="80"
+          color="#3498db"
+          ariaLabel="loading-indicator"
+          visible={true}
+        />
+      </div>
+    );
   }
 
   return (
@@ -96,7 +107,7 @@ const InquiryList = () => {
                   ) : (
                     <Link
                       to={`/reply-inquiry/${contact._id}`}
-                      className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+                      className="px-4 py-2 bg-green-500 text-white rounded-lg hover:green-blue-600 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
                     >
                       View Reply
                     </Link>

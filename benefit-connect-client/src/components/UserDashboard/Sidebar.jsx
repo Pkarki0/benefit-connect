@@ -82,6 +82,43 @@ const Sidebar = () => {
                 <span className="ms-3">My Applied Benefits</span>
               </Link>
             </li>
+            <li>
+              <Link
+                to="/dashboard/inquiries"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  viewBox="0 0 48 48"
+                  enableBackground="new 0 0 48 48"
+                  id="Layer_1"
+                  version="1.1"
+                  xmlSpace="preserve"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  fill="#ffffff"
+                  stroke="#ffffff"
+                >
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    {" "}
+                    <g id="Layer_3">
+                      {" "}
+                      <path
+                        d="M0,1.499v36h12.031V48l14.906-10.501H48v-36H0z M44,33.499H26.906L16,41.125v-3.75v-3.876H4v-28h40V33.499z "
+                        fill="#241F20"
+                      ></path>{" "}
+                    </g>{" "}
+                  </g>
+                </svg>
+                <span className="ms-3">My Replies</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </aside>

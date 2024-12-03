@@ -2,13 +2,12 @@ import { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 
 const Contact = () => {
+  const { isAuthenticated, url, email: userEmail } = useContext(AppContext);
   const [contactData, setContactData] = useState({
     name: "",
-    email: "",
     message: "",
+    email: userEmail ?? "",
   });
-
-  const { isAuthenticated, url } = useContext(AppContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -84,8 +83,8 @@ const Contact = () => {
                 id="email"
                 name="email"
                 required
-                onChange={handleChange}
                 value={contactData.email}
+                onChange={handleChange}
                 className="mt-2 block w-full border-gray-300 rounded-lg p-3 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>

@@ -9,7 +9,7 @@ const BenefitDetails = () => {
   const [benefit, setBenefit] = useState(null);
   const { url, isAuthenticated } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
-  console.log("Benefit Id", benefitId);
+
   useEffect(() => {
     const fetchBenefitDetails = async () => {
       try {

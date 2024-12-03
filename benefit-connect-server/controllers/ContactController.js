@@ -1,6 +1,6 @@
 import contactModel from "../models/contactModel.js";
 
-const addContact = async (req, res) => {
+const addInquiry = async (req, res) => {
   try {
     const contact = new contactModel(req.body);
     const savedContact = await contact.save();
@@ -18,7 +18,7 @@ const addContact = async (req, res) => {
   }
 };
 
-const getAllContacts = async (req, res) => {
+const getAllInquiries = async (req, res) => {
   try {
     const contacts = await contactModel.find({});
     return res.status(201).json({
@@ -33,9 +33,34 @@ const getAllContacts = async (req, res) => {
   }
 };
 
-const getContactById = async (req, res) => {
+const getInquiryById = async (req, res) => {
   try {
     const data = await contactModel.findById(req.params.inquiryId);
+    if (!data) {
+      return res.status(404).json({
+        status: "error",
+        message: "Inquiry data not found",
+        data: null,
+      });
+    }
+    return res.status(200).json({
+      status: "success",
+      message: "Inquiry data retrieved successfully",
+      data: data,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      status: "error",
+      message: "Error fetching Inquiry data by ID",
+      data: err.message,
+    });
+  }
+};
+
+const getInquiriesByEmail = async (req, res) => {
+  console.log(req.params.email);
+  try {
+    const data = await contactModel.find({ email: req.params.email });
     if (!data) {
       return res.status(404).json({
         status: "error",
@@ -97,4 +122,10 @@ const sendInquiryReply = async (req, res) => {
   }
 };
 
-export { addContact, getAllContacts, getContactById, sendInquiryReply };
+export {
+  addInquiry,
+  getAllInquiries,
+  getInquiryById,
+  sendInquiryReply,
+  getInquiriesByEmail,
+};

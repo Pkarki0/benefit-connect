@@ -5,6 +5,7 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import UserBenefits from "../components/UserDashboard/UserBenefits";
 import UserInformation from "../components/UserDashboard/UserInformation";
 import AllBenefits from "../components/UserDashboard/AllBenefits";
+import Inquiries from "./Inquiries";
 
 const UserDashboard = () => {
   return (
@@ -17,6 +18,7 @@ const UserDashboard = () => {
             <Route path="user-benefits" element={<UserBenefits />} />
             <Route path="user-information" element={<UserInformation />} />
             <Route path="all-benefits" element={<AllBenefits />} />
+            <Route path="inquiries" element={<Inquiries />} />
           </Routes>
         </div>
       </div>
