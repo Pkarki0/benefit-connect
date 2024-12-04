@@ -2,7 +2,7 @@ const createTransport = () => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "durpinthapa@gmail.com",
+      user: "dummy@gmail.com",
       pass: "uogx izit qedt pdkn",
     },
   });
@@ -12,7 +12,7 @@ const createTransport = () => {
 
 const sendEmail = (name, email, message) => {
   const mailOptions = {
-    from: "durpinthapa@gmail.com",
+    from: "no-reply@gmail.com",
     to: email,
     subject: `New Inquiry Form Submission from ${name}`,
     text: message,
